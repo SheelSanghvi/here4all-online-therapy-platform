@@ -1,0 +1,56 @@
+{% extends 'users/layout.html' %}
+
+{% block content %}
+<br>
+<h1 align="center">MEET OUR TEAM</h1>
+<br>
+
+<div class="container" style="padding-left: 5%; padding-right: 5%;">
+		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+		    <div class="carousel-inner">
+		    	<div class="carousel-item active">
+			      	<div class="card border-light mb-3" style="">
+			      		<div class="row text-center">
+	  						<img class="card-img-top mx-auto d-block" style="padding-left:auto;padding-right:auto ;margin-top:25px;max-width: 200px;border-radius:40%;" src="https://mobirise.com/bootstrap-template/about-us-page-template/assets/images/mike-wilson-253599-2189x2189.jpg" alt="Card image cap">
+	  					</div>
+						<div class="card-body">
+						    <h4 class="card-text text-center">dr. helen</h4>
+						    <p class="text-center">one of our brightest</p>
+						</div>
+					</div>
+		    	</div>
+
+		    	{% for t in therapist%}
+		    	<div class="carousel-item ">
+			      	<div class="card border-light mb-3" style="">
+			      		<div class="row text-center">
+	  						<img class="card-img-top mx-auto d-block" style="padding-left:auto;padding-right:auto ;margin-top:25px; max-width: 200px;border-radius:40%;" src="{{t.image.url}}" alt="Card image cap">
+	  					</div>
+						<div class="card-body">
+						    <h4 class="card-text text-center"><a href='#'>DR. {{t.f_name}} {{t.l_name}}</a></h4>
+						    <p class="text-center">{{t.additional_data}}</p>
+						</div>
+					</div>
+		    	</div>
+		    	{% endfor %}
+
+
+
+			   
+			</div>
+			<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" style="filter: invert(50%);" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+			</a>
+			<a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" style="filter: invert(50%);" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+			</a>
+		</div>
+</div>
+
+
+
+
+
+{% endblock %}

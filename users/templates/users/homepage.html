@@ -1,0 +1,36 @@
+{% extends "users/layout.html" %}
+{% load static %}
+{% block content %}
+
+
+
+
+
+
+<style>
+	#jumbo{
+	 margin-bottom:0;  
+	 background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), 
+	 url("{% static 'users/home.jpg' %}")
+	  }
+</style>
+<div class="jumbotron bg-cover text-white full-height" id="jumbo"> 
+  <div class="container">
+	  <h1 class="display-4">We are Here For All of you!</h1><br>
+	  <p class="lead">Going through stress, anxiety or depression? Do you need help to deal with a relationship aftermath or maybe some motivation? Solutions to all your problems are right here.</p>
+	  <hr class="my-3">
+	  <p>Join us today!</p>
+	  <a class="btn btn-primary btn-md" href="{% url 'register' %}" role="button">Sign Up</a>
+  </div>
+ 
+<br>
+<br>
+<br>
+<br>
+</div> 
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'users/therapistDashboard.html' %}
+{% load crispy_forms_tags %}
+
+{% block content2 %}
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+	therapist profile
+	</div>
+	<div>
+		
+	<img src="{{therapist.image.url}}" width="200px" height="200px">
+	<br>
+	Name: {{therapist.f_name}} {{therapist.l_name}}
+	<br>
+	Email: {{therapist.email}}
+	<br>
+	Gender: {{therapist.gender}}
+	<br>
+	Age: {{therapist.age}}
+	<br>
+	Phone: {{therapist.phone}}
+	<br>
+	<br>
+	<button type="button" data-toggle="modal" data-target="#formid">Edit</button>
+	<div class="modal" id="formid" style="z-index:20000">
+		<div class="modal-dialog ">
+			<div class="modal-content">
+				<div class="modal-body">
+					<form method='POST' enctype= "multipart/form-data">
+						{% csrf_token %}
+						{{form1|crispy}}
+						<button type="submit">save changes</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+{% endblock %}
+<!-- onclick="document.getElementById('formid').style.display='block' -->

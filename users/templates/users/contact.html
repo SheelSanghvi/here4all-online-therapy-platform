@@ -1,0 +1,51 @@
+{% extends "users/layout.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<br>
+<div class="container">
+	{% if successmessage %}
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+	    <strong>Thankyou for contacting us!</strong>
+	    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+	    <span aria-hidden="true">&times;</span>
+	    </button>
+	    </div>
+	{% endif %}
+	
+   
+	<h4><i><p class="font-weight-light" style="text-align: center">Looking for a non-judgemental platform to resolve your mental issues? Here we are! Have any queries at all? Get in touch with us today.</p></i></h4>
+</div>
+
+<div class="container" style="background-color: #ff9999; background-image: linear-gradient(#ff9999, #f2f2f2);">
+	<div class="row container">
+		
+		<div class="col-sm-4" style="background-color: white; margin-top:15px; margin-bottom:45px">
+
+			<p><h5 >phone</h5>
+			(541) 344-1793<br>
+			(541) 344-1564</p>
+			<p><h5 >Address</h5>
+			40 East, <br>13th Avenue,<br> California 97401</p>
+			<p><h5 >Email Address</h5>
+			<a href="mailto:here4all@gmail.com">here4all@gmail.com</a></p>
+			<p><h5 >Working Hours</h5>
+			Monday-Friday: 9 am to 6 pm <br>
+			Saturday: 9 am to 2 pm</p>
+
+		</div>
+		<div class="col-sm-1">
+		</div>
+		<div class="col-sm-7" style=" margin-top:15px; margin-bottom:45px">
+			<form method="POST">
+				{% csrf_token %}
+				{{form|crispy}}
+				<div>
+					<button class="btn btn-primary">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+

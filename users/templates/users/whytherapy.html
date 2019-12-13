@@ -1,0 +1,214 @@
+{% extends "users/layout.html" %}
+{% load static %}
+{% block content %}
+
+
+<style>
+	#jumbo1{
+	 margin-bottom:0;  
+	 background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), 
+	 url("{% static 'users/j3.jpg' %}");
+	 background-size: cover;
+	 background-repeat: no-repeat;
+	 
+	 height: 100;
+	}
+	#jumbo2{
+	 margin-bottom:0;  
+	 background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), 
+	 url("{% static 'users/j1.jpg' %}");
+	 background-size: cover;
+	 background-repeat: no-repeat;
+	 width: 100%;
+	}
+	#jumbo3{
+	 margin-bottom:0;  
+	 background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 100%), 
+	 url("{% static 'users/j2.jpg' %}");
+	 background-size: cover;
+	 background-repeat: no-repeat;
+	 width: 100%;
+	}
+
+</style>
+<!-- <div class="jumbotron bg-cover text-white full-height" id="jumbo"> 
+  <div class="container">
+	  <h1 class="display-4">We are Here For All of you!</h1><br>
+	  <p class="lead">Going through stress, anxiety or depression? Do you need help to deal with a relationship aftermath or maybe some motivation? Solutions to all your problems are right here.</p>
+	  <hr class="my-3">
+	  <p>Join us today!</p>
+	  <a class="btn btn-primary btn-md" href="{% url 'register' %}" role="button">Sign Up</a>
+  </div>  -->
+
+
+
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active jumbotron bg-cover text-white full-height" id="jumbo1"> 
+    <div class="container">
+	  <h1 class="display-4">Taking therapy indicates strength, not weakness</h1><br>
+	  <p class="lead">"Sometimes it takes dealing with a disability - the trauma, the relearning, the months of rehabilitation therapy - to uncover our true abilities and how we can put them to work for us in ways we may have never imagined." <br>-Tammy Duckworth</p>
+	  <br>
+	  <br>
+	  <hr class="my-3">
+    </div> 
+	</div>
+
+    <div class="carousel-item jumbotron bg-cover text-white full-height" id="jumbo2"> 
+    <div class="container">
+	  <h1 class="display-4">Take the right choice</h1><br>
+	  <p class="lead">"In any given moment, we have two options: to step forward into growth or to step back into safety" -<br>Abraham Maslow</p>
+	  <br>
+	  <br>
+	  <br>
+	  <hr class="my-3">
+    </div> 
+	</div>
+
+	<div class="carousel-item jumbotron bg-cover text-white full-height" id="jumbo3"> 
+    <div class="container">
+	  <h1 class="display-4">Come Join Us Today</h1><br>
+	  <p class="lead">"The future depends on what you do today" <br>- Mahatma Gandhi</p>
+	  <br>
+	  <br>
+	  <br>
+	  <hr class="my-3">
+    </div> 
+	</div>
+
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+
+
+<hr>
+<h3 align="center">What the experts say?</h3><br>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-4 text-center col d-flex justify-content-center">
+			<div class="card" style="width: 18rem;">
+				<img src="https://placehold.it/1200x400?text=IMAGE" class="d-block w-100" class="card-img-top" alt="...">
+				<div class="card-body">
+					<p class="card-text">“Don’t let mental blocks control you. Set yourself free. Confront your fear and turn the mental blocks into building blocks.”<br>
+					― Dr Roopleen</p>
+					<!-- 					<a href="#" class="btn btn-primary">Go somewhere</a> -->
+				</div>
+			</div>
+		</div>
+
+
+		<div class="col-sm-4 text-center col d-flex justify-content-center">
+			<div class="card" style="width: 18rem;">
+				<img src="https://placehold.it/1200x400?text=IMAGE" class="d-block w-100" class="card-img-top" alt="...">
+				<div class="card-body">
+					<p class="card-text">“All children should be taught to unconditionally accept, approve, admire, appreciate, forgive, trust, and ultimately, love their own person.”<br>
+					― Asa Don Brown</p>
+					<!-- 					<a href="#" class="btn btn-primary">Go somewhere</a> -->
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-4 text-center col d-flex justify-content-center">
+			<div class="card" style="width: 18rem;">
+				<img src="https://placehold.it/1200x400?text=IMAGE" class="d-block w-100" class="card-img-top" alt="...">
+				<div class="card-body">
+
+					<p class="card-text">“Our wounds are often the openings into the best and most beautiful part of us.” 
+						<br>
+					― David Richo</p>
+					<!-- 					<a href="#" class="btn btn-primary">Go somewhere</a> -->
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<br>
+<div class="container">
+	<div class="card" style="width: 100%;">
+		<div class="card-body">
+			<h4 class="card-title">How therapy benefits? </h4>
+
+			<p class="card-text">
+				People in talk therapy explore their moods and behaviors in a safe place. A mental health professional may provide a fresh perspective on an issue. They can give people a better understanding of their own emotions. Therapists can also teach communication skills to convey those emotions. Therapy can promote one’s self-esteem, relationships, and outlook on life.
+				<br>
+				Therapy can be particularly helpful for individuals with the following concerns:
+
+				<p><h6 class="card-subtitle mb-2 text-muted">HELP WITH STRESS AND DEPRESSION</h6>
+					Depression is one of the most common mental health conditions in the world. It is more than sadness over a setback or a period of mourning after losing a loved one. It is chronic misery that hinders one’s quality of life. Depression often involves sleep problems, appetite changes, and feelings of guilt or apathy.
+
+					Treatment can help individuals with these symptoms. Psychotherapy treatment for depression relies on trust and emotional support. An effective therapist provides people a comfortable, private setting to heal. Together, they examine the causes and potential solutions to their concerns. Therapists help depressed individuals build new ways of thinking and reacting. Therapy can allow people to return to the loved ones and activities that they care about most. 
+					<br>
+					<a href="#" class="card-link"><button style="margin-bottom: 7px; margin-top:3px;" type="button" class="btn btn-info">Stress and Depression Blogs</button></a>
+				</p>
+
+
+				<p><h6 class="card-subtitle mb-2 text-muted">HELP WITH ANXIETY</h6>
+					Anxiety is the most common mental health condition seen in the United States. It impacts roughly 18% of the population. Nearly half of individuals diagnosed with depression also experience some form of anxiety. 
+
+					Psychotherapy can help people with anxiety regain their compass in life. A person can provide context for their emotions by identifying the underlying causes. Rather than being paralyzed by fear, they can understand their emotions, accept them, and make real progress toward their goals.
+					<br>
+					<a href="#" class="card-link"><button style="margin-bottom: 7px; margin-top:3px;" type="button" class="btn btn-info">Anxiety Blogs</button></a>
+				</p>
+
+
+
+				<p><h6 class="card-subtitle mb-2 text-muted">SELF CONFIDENCE AND MOTIVATION</h6>
+					Personality factors such as confidence, self-esteem, assertiveness, anger and building resilience need a therapeutic alliance to understand oneself better and deal with core concerns. Research states 80% of experience improved self confidence with a help of a counsellor.
+					<br>
+					<a href="#" class="card-link"><button style="margin-bottom: 7px; margin-top:3px;" type="button" class="btn btn-info">Self Confidence Blogs</button></a>
+				</p>
+
+				<p><h6 class="card-subtitle mb-2 text-muted">HELP WITH RELATIONSHIPS</h6>
+					Psychotherapy can also help individuals improve their relationships. Mental health professionals focus on helping people open lines of communication with each other. People use this treatment to gain perspective on relationship problems that arise. They can also use therapy preventatively when they know trouble is on the horizon. 
+
+					Among the types of therapy for relationships commonly sought:
+
+					Family Therapy can involve both couples and children. Its general aim is to improve nurturing relationships.
+					Marriage Counseling is focuses on spousal relationship between two partners. Its goal is to resolve conflict and strengthen a couple’s bond.
+					<br>
+					<a href="#" class="card-link"><button style="margin-bottom: 7px; margin-top:3px;" type="button" class="btn btn-info">Relationship blogs</button></a>
+				</p>
+
+
+				<p><h6 class="card-subtitle mb-2 text-muted">YOU DESERVE SUPPORT</h6>
+					Psychotherapy can help people cope with a wide range of experiences. Anyone can enjoy the benefits of therapy, whether you want to set life goals or establish healthy relationships. You don’t need to be in a debilitating crisis to get support. 
+
+					If people are proactive about their mental health, they can prevent their concerns from festering into a larger problem. Therapy can provide relief from symptoms and restore one’s quality of life. It can help people learn how to be themselves again. 
+
+					Everyone has emotional challenges. In today’s America, solutions are available to more people than ever. No one needs to suffer alone.	<br>
+					<a href="{% url 'contact' %}" class="card-link"><button style="margin-bottom: 7px; margin-top:3px;" type="button" class="btn btn-info">Contact us today</button>
+				</p></a>
+			</p>
+		</div>
+	</div>
+	<br>
+	<div class="card" style="width: 100%;">
+		<div class="card-body">
+			<h5 class="card-title">Card title</h5>
+			<h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+			<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+			<a href="#" class="card-link">Card link</a>
+			<a href="#" class="card-link">Another link</a>
+		</div>
+	</div>
+</div>
+<br>
+<br>
+
+
+
+{% endblock %}

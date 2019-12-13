@@ -1,0 +1,29 @@
+{% extends "users/layout.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+
+			<div class="container">
+				<br>
+				<br>
+				<!-- <p ><h2 class='text-center'>LOGIN</h2></p> -->
+					<div class="container bg-light">
+						<br>
+						<br>
+							<h4 class="text-center">You have been succesfully logged out!</h4>
+							<p class="text-center" ><a href=" {% url 'home'%} ">Go to the Homepage</a></p>
+							<br>
+							<br>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-3"></div>
+	</div>
+
+</div>
+{% endblock %}

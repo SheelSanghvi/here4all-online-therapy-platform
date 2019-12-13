@@ -1,0 +1,35 @@
+{% extends "users/layout.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+
+			<div class="container">
+				<br>
+				<br>
+				<p class="display-4">Sign Up Now!</p>
+					<div class="container bg-light">
+						<br>
+						<br>
+							<form method="POST">
+								{% csrf_token %}
+								{{form|crispy}}
+
+								<div>
+									<button class="btn btn-primary">Submit</button>
+								</div>
+							</form>
+							<br>
+							<br>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-2"></div>
+	</div>
+
+</div>
+{% endblock %}
