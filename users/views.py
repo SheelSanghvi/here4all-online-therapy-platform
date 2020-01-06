@@ -5,6 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, JsonResponse
 from .models import *
 
+#paginator
+from django.core.paginator import Paginator
+
 
 #rest framework imports
 from rest_framework.settings import api_settings
@@ -25,11 +28,14 @@ def ourteam(request):
 	therapist= User.objects.filter(user_type=2)
 	return render(request, "users/ourteam.html", {'therapist':therapist})
 
-# def
-
 def blogs(request):
 	topics = Blogs.TOPICS
 	blogs = Blogs.objects.all()
+
+	paginator= Paginator(blogs, 2)
+	page = request.GET.get('page')
+	blogs = paginator.get_page(page)
+
 	return render(request, "users/blogs.html", {'topic': None, 'topics': topics, 'blogs': blogs})
 
 def topicBlogs(request, url_topic):

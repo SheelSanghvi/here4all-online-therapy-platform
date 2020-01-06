@@ -162,18 +162,7 @@ h1, h2, h3, h4, h5, h6 {
       		<a class="p-2 text-muted" href="{% url 'topicBlogs' t.1 %}">{{t.1}}</a>
       	{% endfor %}
       </nav>
-<!--         <nav class="nav d-flex justify-content-between">
-          <a class="p-2 text-muted" href="{% url 'topicBlogs' 'Stress' %}">Stress</a>
-          <a class="p-2 text-muted" href="{% url 'topicBlogs' 'Depression' %}">Depression</a>
-          <a class="p-2 text-muted" href="{% url 'topicBlogs' 'Anxiety' %}">Anxiety</a>
-          <a class="p-2 text-muted" href="{% url 'topicBlogs' 'Obsessive Compulsive Disorder' %}">OCD</a>
-          <a class="p-2 text-muted" href="{% url 'topicBlogs' 'Eating Disorders' %}">Eating Disorders</a>
-          <a class="p-2 text-muted" href="{% url 'topicBlogs' 'Relationships' %}">Relationships</a>
-          <a class="p-2 text-muted" href="{% url 'topicBlogs' 'Work Stress' %}">Work Stress</a>
-          <a class="p-2 text-muted" href="#">Self Doubt</a> 
-          <a class="p-2 text-muted" href="#">Addiction and Substance Abuse</a>        
-          <a class="p-2 text-muted" href="#">Suicidal Tendency</a>
-        </nav> -->
+      
       </div>
 
       <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
@@ -222,7 +211,7 @@ h1, h2, h3, h4, h5, h6 {
             From our therapists themselves!
           </h3>
 
-          {% for blog in blogs %}
+          {% for blog in blogs.object_list %}
           <div class="blog-post">
             <h2 class="blog-post-title">{{blog.title}}</h2>
             <p class="blog-post-meta">{{blog.date}} by <a href="#">N{{blog.therapist_id.f_name}}</a></p>
@@ -233,10 +222,55 @@ h1, h2, h3, h4, h5, h6 {
           </div>
           {% endfor %}
 
-          <nav class="blog-pagination">
+
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    {% if blogs.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page= {{ blogs.previous_page_number}}" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+        <span class="sr-only">Previous</span>
+      </a>
+    </li>
+    {% endif %}
+
+    {% for num in blogs.paginator.page_range%}
+      
+      {% if blogs.number == num %}
+      <li class="page-item">
+      <a  class="page-link" href="?page= {{num}} "> {{num}} </a>
+      </li>
+      
+      {% else %}
+      <li class="page-item">
+      <a  class="page-link" href =" ?page= {{num}} ">{{ num }}</a>
+      </li>
+      {% endif %}
+    {% endfor %}
+
+    {% if blogs.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page= {{ blogs.next_page_number}}" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+        <span class="sr-only">Next</span>
+      </a>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+
+
+<!--           {{blogs.has_previous}}
+          {{blogs.has_next}}
+          {{blogs}} -->
+
+
+
+          <!-- <nav class="blog-pagination">
             <a class="btn btn-outline-primary" href="#">Older</a>
             <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
-          </nav>
+          </nav> -->
 
         </div><!-- /.blog-main -->
 

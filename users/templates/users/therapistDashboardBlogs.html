@@ -24,7 +24,7 @@
 		</div>
 
 
-	    <div class=" col-sm-6 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+	    <div class=" col-sm-6 d-flex justify-content-between flex-wrap flex-md-nowrap align-items-top pt-3 pb-2 mb-3 border-bottom">
 			<div class="container-fluid">
 			{% if blogstatus %}
 				<div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -34,26 +34,25 @@
 			    </button>
 			    </div>
 			{% endif %}
-					<div class="container" style="border: 2px solid grey">
-						<br>
-						<br>
-						<p class="display-4">Add Blog</p>
-							<div class="container-fluid bg-light">
+				<div class="container" style="border: 2px solid grey; ">
+					<br>
+					<br>
+					<p class="display-4">Add Blog</p>
+						<div class="container-fluid bg-light">
+							<br>
+							<br>
+								<form method="POST">
+									{% csrf_token %}
+									{{form|crispy}}
+
+									<div>
+										<button class="btn btn-primary">Submit</button>
+									</div>
+								</form>
 								<br>
 								<br>
-									<form method="POST">
-										{% csrf_token %}
-										{{form|crispy}}
-
-										<div>
-											<button class="btn btn-primary">Submit</button>
-										</div>
-									</form>
-									<br>
-									<br>
-							</div>
-					</div>
-
+						</div>
+				</div>
 			</div>
 		</div>
 	</div>

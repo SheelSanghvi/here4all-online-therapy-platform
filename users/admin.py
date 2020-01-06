@@ -6,7 +6,10 @@ class GuestContactUsAdmin(admin.ModelAdmin):
 	list_display= ['full_name', 'email', 'question']
 
 class BlogsAdmin(admin.ModelAdmin):
-	list_display= [ 'id', 'therapist_id', 'topic', 'title', 'subtitle', 'date', 'content']
+	date_hierarchy = 'date'
+	search_fields= ['title', 'id']
+	list_filter= ['topic', 'date']
+	list_display= [ 'id', 'therapist_id', 'topic', 'title', 'subtitle', 'date']
 
 class UserAdmin(admin.ModelAdmin):
 	list_display= ['id', 'user_type','email', 'f_name', 'l_name', 'gender']
