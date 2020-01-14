@@ -6,4 +6,5 @@ Therapists and patients can communicate via chat using the web-app. Therapists c
 Since this is a fully equipped web-app with loads of features, i'll explain each of them individually:
 
 HOME-PAGE
+
 ![image](https://user-images.githubusercontent.com/54235546/72379213-0123ac00-3739-11ea-82cd-90726ce15ff4.png)
