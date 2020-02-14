@@ -12,7 +12,7 @@ from django.core.paginator import Paginator
 #rest framework imports
 from rest_framework.settings import api_settings
 from .serializers import *
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
 from rest_framework import generics, mixins
 from rest_framework.mixins import ListModelMixin
@@ -60,6 +60,11 @@ def register(request):
 def login(request):
 	return render(request, 'users/login.html')
 
+def deleteAccount(request):
+	id = User.objects.get(id= request.user.id)
+	id.delete()
+	return redirect('home')
+
 @login_required
 def dashboard(request):
 	if request.user.user_type =='2':
@@ -74,7 +79,7 @@ def dashboard(request):
 		return render(request, 'users/therapistDashboardProfile.html', {'therapist': therapist, 'form1': form1})
 	else:
 		if request.method== 'POST':			
-			form1= UserUpdate(request.POST, instance=request.user)
+			form1= UserUpdate(request.POST, request.FILES, instance=request.user)
 			if form1.is_valid():
 				form1.save()
 		else:
@@ -82,19 +87,13 @@ def dashboard(request):
 		patient= User.objects.get(id=request.user.id)
 		return render(request, 'users/patientDashboardProfile.html', {'patient': patient, 'form1': form1})
 
-
-# @login_required
-# def therapistDashboardProfile(request):
-# 	therapist= User.objects.get(id=request.user.id)
-# 	return render(request, 'users/therapistDashboardProfile.html', {'therapist': therapist})
-
 @login_required
 def therapistDashboardBlogs(request):
 	if request.user.user_type == '1':
 		return redirect('dashboard')
 	therapistblogs= Blogs.objects.filter(therapist_id= request.user.id)
 	if request.method == 'POST':
-		form= BlogsForm(request.POST)
+		form= BlogsForm(request.POST, request.FILES)
 		if form.is_valid():
 			post=form.save(commit=False)
 			post.therapist_id = request.user
@@ -105,10 +104,41 @@ def therapistDashboardBlogs(request):
 		form= BlogsForm()
 		return render(request, 'users/therapistDashboardBlogs.html', {'form': BlogsForm(), 'blogstatus': False, 'therapistblogs': therapistblogs})
 
-# @login_required
-# def patientDashboardProfile(request):
-# 	patient= User.objects.get(id=request.user.id)
-# 	return render(request, 'users/patientDashboardProfile.html', {'patient': patient})
+@login_required
+def therapistDashboardChat(request):
+	therapist = User.objects.get(id=request.user.id)
+	xx = Question.objects.filter(therapist=request.user.id)
+	pending = 0
+	solved = 0
+	for x in xx:
+		if x.answer == "Reply Pending":
+			pending += 1
+		else:
+			solved +=1
+	if request.method == "POST":
+		ans = request.POST['solution']
+		qid = request.POST['qid']
+		obj = Question.objects.get(id= qid)
+		obj.answer = ans
+		obj.save()
+	conversation = Question.objects.filter(therapist=request.user.id).order_by('-time_stamp')
+	total = solved + pending
+	if total != 0:
+		ratio = solved/total
+	else:
+		ratio=0
+	return render(request, 'users/therapistDashboardChat.html', {'conversation': conversation, 'solved': solved, 'pending': pending, 'total': total, 'ratio': ratio, 'therapist': therapist})
+
+@login_required
+def patientDashboardChat(request):
+	users= User.objects.filter(user_type=2)
+	current_patient = int(request.user.id)	
+	conversation = Question.objects.filter(patient_id=current_patient).order_by('-time_stamp')
+	if request.method == 'POST':
+		therapist = int(request.POST['therapist'])
+		ques = request.POST['Issue']
+		Question.objects.create(patient_id=current_patient, therapist_id=therapist, question=ques)
+	return render(request, 'users/patientDashboardChat.html', {'therapists': users, 'conversation': conversation})
 
 
 def guestContactUs(request):
@@ -125,10 +155,11 @@ def guestContactUs(request):
 
 
 
+
 #rest framework views
 
 class BlogsAPIView(generics.ListAPIView, mixins.CreateModelMixin):
-	permission_classes = [IsAuthenticated]
+	permission_classes = [AllowAny]
 	queryset = Blogs.objects.all()
 	serializer_class = BlogsSerializer
 
@@ -136,7 +167,7 @@ class BlogsAPIView(generics.ListAPIView, mixins.CreateModelMixin):
 		return self.create(request, *args, **kwargs)
 
 class BlogsRudView(generics.RetrieveUpdateDestroyAPIView):
-	permission_classes = [IsAuthenticated]
+	permission_classes = [AllowAny]
 	lookup_field= 'id'
 	queryset = Blogs.objects.all()
 	serializer_class = BlogsSerializer

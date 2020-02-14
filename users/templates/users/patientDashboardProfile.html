@@ -3,23 +3,43 @@
 {% block content2 %}
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-	patient profile
+    <h5>
+    {% filter force_escape|upper %}
+	Hi {{patient.f_name}},
+	{% endfilter %} 
+	</h5>
 	</div>
-	<div>
-	<img src="{{patient.image.url}}" width="200px" height="200px">
-	<br>
-	Name: {{patient.f_name}} {{patient.l_name}}
-	<br>
-	Email: {{patient.email}}
-	<br>
-	Gender: {{patient.gender}}
-	<br>
-	Age: {{patient.age}}
-	<br>
-	Phone: {{patient.phone}}
-	<br>
-	<br>
-	<button type="button" data-toggle="modal" data-target="#formid">Edit</button>
+	<div class="row">
+		<div class="col-sm-5">
+			<img src="{{patient.image.url}}" class="img-thumbnail">
+		</div>
+		<div class="col-sm-7">
+			<div class="card text-dark bg-light mb-3">
+			<div class="card-header text-center"><b>PROFILE DETAILS</b></div>
+			<div class="card-body">
+			    <p class="card-text text-center">
+					<p class="font-weight-normal text-center" style="font-size: large">{{patient.f_name}} {{patient.l_name}}
+					<br>
+					Email Address: {{patient.email}}
+					<br>
+					Gender: {{patient.gender}}
+					<br>
+					Age: {{patient.age}}
+					<br>
+					{% if patient.phone != None %}
+					Phone Number: {{patient.phone}}
+					<br>
+					{% endif %}
+					<br>
+					<button type="button" class="btn btn-info btn-block" data-toggle="modal" data-target="#formid">Edit Profile</button>
+					</p>
+			    </p>
+			</div>
+		</div>
+	</div>
+
+
+	
 	<div class="modal" id="formid" style="z-index:20000">
 		<div class="modal-dialog ">
 			<div class="modal-content">

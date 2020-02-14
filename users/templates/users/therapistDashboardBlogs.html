@@ -18,6 +18,11 @@
 	            <p>{{t.subtitle}}</p>
 	            <hr>
 	            <p>{{t.content}}</p>
+	            <hr>
+	            {% if t.image.url != None %}
+	            <p><img src="{{t.image.url}}"></p>
+	            <hr>
+	            {% endif %}
 	          </div>
           {% endfor %}			
 
@@ -41,7 +46,7 @@
 						<div class="container-fluid bg-light">
 							<br>
 							<br>
-								<form method="POST">
+								<form method="POST" enctype= "multipart/form-data">
 									{% csrf_token %}
 									{{form|crispy}}
 

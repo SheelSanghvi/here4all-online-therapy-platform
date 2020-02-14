@@ -85,7 +85,20 @@ class Blogs(models.Model):
 	subtitle= models.CharField(unique= True, max_length= 75)
 	date= models.DateField(auto_now_add=True)
 	content= models.TextField(unique=True)
+	image= models.ImageField(default = None, upload_to="profile_photo", blank=True, null=True)
 	favourited_by = models.ManyToManyField(User, related_name="favourited_blogs")
+
+class Question(models.Model):
+	id= models.AutoField(primary_key=True)
+	patient= models.ForeignKey(User, on_delete= models.CASCADE, related_name="messages_sent")
+	therapist= models.ForeignKey(User, on_delete= models.CASCADE, related_name="messages_received")
+	question= models.TextField()
+	answer= models.TextField(default= "Reply Pending")
+	answered=models.BooleanField(default=False)
+	time_stamp= models.DateTimeField(auto_now_add=True)
+
+
+
 	
 
 

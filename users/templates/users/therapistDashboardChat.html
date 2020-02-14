@@ -1,0 +1,99 @@
+{% extends 'users/therapistDashboard.html' %}
+{% load crispy_forms_tags %}
+{% block content2 %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.checked {
+  color: orange;
+}
+</style>
+<main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4">
+	<div class="row">
+		<div class="col-sm-8">
+		<br>
+		{% for c in conversation %}
+			
+				<div class="card">
+					<div class="card-body"><p style=" font-family: 'Times New Roman', Times, serif;">
+						<font color="#ff3377">Patient Name: </font>{{c.patient.f_name}} {{c.patient.l_name}}
+						<br>
+						<font color="#ff3377">Issues Faced By {{c.patient.f_name}}: </font>{{c.question}}
+						<br>
+						{% if c.answer == "Reply Pending" %}
+						<form method="POST" action="{% url 'therapistDashboardChat' %}">
+							{% csrf_token %}
+							<font color="#ff3377">Your Answer: </font>
+							<br>
+							<input type="text" required minlength=1 name="solution" class="form-control"><br>
+							<input type="hidden" name="qid" value="{{c.id}}">
+							<input type="submit" value="Submit" class="btn btn-info btn-md btn-block" align="center">
+						</form>
+						{% else %}
+						<font color="#ff3377">Your Answer: </font>{{c.answer}}
+						{% endif %}
+						<br></p>
+					</div>
+				</div>
+			<br>
+		{% endfor %}
+		</div>
+		<div class="col-sm-4">
+			<br>
+			<div class="card">
+				<div class="card-body">
+					<div class="row">
+						<div class="col-sm-7">
+							<img src="{{therapist.image.url}}" class="img-thumbnail">
+						</div>
+						<div class="col-sm-5 my-auto">
+							<p style="font-size: 150%">{{therapist.f_name}}
+						</div>
+					</div>
+					<br>
+					You have a total of {{total}} Queries 
+					<br>
+					You Have Successfully Replied to {{solved}} Issues!
+					<br>
+					Replies Pending: {{pending}}
+					<hr>
+					{% if solved == total %}
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					{% elif ratio >= 0.75 %}
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					{% elif ratio >= 0.50 %}
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+					{% elif ratio >= 0.25 %}
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star "></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+					{% else %}
+					<span class="fa fa-star checked"></span>
+					<span class="fa fa-star "></span>
+					<span class="fa fa-star "></span>
+					<span class="fa fa-star"></span>
+					<span class="fa fa-star"></span>
+					{% endif %}
+					<br>
+					<text style="color: red;"><b>TIP: </b></text>Increase your rating by replying to your received queries
+
+				</div>
+			</div>
+		</div>
+	</div>
+</main>
+
+{% endblock %}

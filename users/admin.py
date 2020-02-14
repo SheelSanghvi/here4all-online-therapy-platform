@@ -17,6 +17,7 @@ class UserAdmin(admin.ModelAdmin):
 admin.site.register(User, UserAdmin)
 admin.site.register(GuestContactUs, GuestContactUsAdmin)
 admin.site.register(Blogs,BlogsAdmin)
+admin.site.register(Question)
 # class ProfileAdmin(admin.ModelAdmin):
 # 	list_display= ['id']
 

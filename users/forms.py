@@ -28,7 +28,7 @@ class RegistrationForm(ModelForm):
 class GuestContactUsForm(ModelForm):
 	class Meta:
 		model=GuestContactUs
-		fields=['full_name', 'email', 'question']
+		fields=['full_name', 'email', 'question'] 
 		labels = {
         "email": "Email",
         "question": "What can we help you with?",
@@ -37,9 +37,10 @@ class GuestContactUsForm(ModelForm):
 class BlogsForm(ModelForm):
 	class Meta:
 		model=Blogs
-		fields=['topic', 'title', 'subtitle', 'content']
+		fields=['topic', 'title', 'subtitle', 'image','content']
 		labels={
-		"content": "Write here!"
+		"content": "Write here!",
+		"image": "Upload an image (optional)"
 		}
 
 
@@ -59,6 +60,27 @@ class UserUpdate(ModelForm):
 			"l_name": "last name",
 			"additional_data": "health issues",
 			}
+
+# class ChatFormPatient(ModelForm):
+# 	class Meta:
+# 		model = Chat
+# 		fields=['therapist', 'text']
+# 		labels={
+# 		"therapist": "Choose your therapist",
+# 		"text": "Describe your issue",
+# 		}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

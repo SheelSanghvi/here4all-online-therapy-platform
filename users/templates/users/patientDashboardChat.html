@@ -1,0 +1,48 @@
+{% extends 'users/patientDashboard.html' %}
+{% load crispy_forms_tags %}
+{% block content2 %}
+<main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4">
+<div class="row">
+
+<div class="col-sm-8">
+	<br>
+	{% for c in conversation %}
+	<div class="card">
+  		<div class="card-body">
+			question: {{c.question}}
+			<br>
+			answer: {{c.answer}}
+			<br>
+			therapist: {{c.therapist.f_name}} {{c.therapist.l_name}}
+			<br>
+			<br>
+  		</div>
+	</div>
+	<br>
+	{% endfor %}
+</div>
+<div class="col-sm-4">
+	<br>
+
+<form style="border: 2px solid lightblue; padding:10px"method="POST" action="{% url 'patientDashboardChat' %}">
+	{% csrf_token %}
+  Which of our therapists do you wish to talk to?<br>
+  <select name="therapist" class="form-control">
+  	{% for t in therapists %}
+  		<option value="{{t.id}}">{{t.f_name}} {{t.l_name}}</option>
+  	{% endfor %}
+  </select>
+  <br>
+  Please describe your issue in detail<br>
+  <input type="text" required minlength=1 name="Issue" class="form-control">
+  <br>
+  <div style="text-align:center">
+  <input type="submit" value="Submit" class="btn btn-info btn-md btn-block" align="center">
+  </div>
+</form> 
+<br>
+</div>
+</div>
+</main>
+
+{% endblock %}

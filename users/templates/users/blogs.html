@@ -1,8 +1,17 @@
 {% extends "users/layout.html" %}
 {% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 	/* stylelint-disable selector-list-comma-newline-after */
+.fa {
+  font-size: 50px;
+  cursor: pointer;
+  user-select: none;
+}
 
+.fa:hover {
+  color: darkblue;
+}
 .blog-header {
   line-height: 1;
   border-bottom: 1px solid #e5e5e5;
@@ -211,19 +220,24 @@ h1, h2, h3, h4, h5, h6 {
             From our therapists themselves!
           </h3>
 
-          {% for blog in blogs.object_list %}
+          {% for blog in blogs %}
           <div class="blog-post">
             <h2 class="blog-post-title">{{blog.title}}</h2>
-            <p class="blog-post-meta">{{blog.date}} by <a href="#">N{{blog.therapist_id.f_name}}</a></p>
+            <p class="blog-post-meta">{{blog.date}} by <a href="#">{{blog.therapist_id.f_name}}</a></p>
 
             <p>{{blog.subtitle}}</p>
             <hr>
             <p>{{blog.content}}</p>
           </div>
+          <i onclick="myFunction(this)" class="fa fa-thumbs-up"></i>
           {% endfor %}
 
 
-
+<!-- <script>
+  function myFunction(x) {
+    x.classList.toggle("fa-thumbs-down");
+  }
+</script> -->
 <nav aria-label="Page navigation example">
   <ul class="pagination">
     {% if blogs.has_previous %}
